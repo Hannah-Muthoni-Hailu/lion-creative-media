@@ -137,20 +137,28 @@ p { margin: 0 0 14px; }
   width: 56px; height: 48px; padding: 0; background: none; border: 0; cursor: pointer;
   align-items: center; justify-content: center;
 }
+/* Each line is two nested elements: .nav-bar slides to the centre, the <i> inside
+   it rotates. Only `transform` is animated, so it behaves the same in every browser. */
 .nav-toggle-icon { position: relative; display: block; width: 24px; height: 16px; }
-.nav-toggle-icon span,
-.nav-toggle-icon span::before,
-.nav-toggle-icon span::after {
-  content: ""; display: block; position: absolute; left: 0; height: 2px; background: var(--gold);
+.nav-bar {
+  position: absolute; left: 0; top: 7px; display: block; width: 24px; height: 2px;
+  transition: transform 0.3s ease 0.3s, opacity 0.2s ease;
 }
-.nav-toggle-icon span { top: 7px; width: 100%; transition: background 0.3s; }
-.nav-toggle-icon span::before,
-.nav-toggle-icon span::after { width: 100%; }
-.nav-toggle-icon span::before { top: -7px; transition: background 0.3s, transform 0.3s, top 0.3s 0.3s; }
-.nav-toggle-icon span::after { bottom: -7px; transition: background 0.3s, transform 0.3s, bottom 0.3s 0.3s; }
-.nav-toggle[aria-expanded="true"] .nav-toggle-icon span { background: transparent; }
-.nav-toggle[aria-expanded="true"] .nav-toggle-icon span::before { top: 0; transform: rotate(45deg); transition: top 0.3s, transform 0.3s 0.3s; }
-.nav-toggle[aria-expanded="true"] .nav-toggle-icon span::after { bottom: 0; transform: rotate(-45deg); transition: bottom 0.3s, transform 0.3s 0.3s; }
+.nav-bar i {
+  display: block; width: 100%; height: 100%; background: var(--gold);
+  transition: transform 0.3s ease;
+}
+.nav-bar--middle { transition: opacity 0.2s ease 0.3s; } /* returns only after the X has folded back */
+.nav-bar--top { transform: translateY(-7px); }
+.nav-bar--bottom { transform: translateY(7px); }
+/* open: the lines slide together first, then rotate into an X (closing reverses it) */
+.nav-toggle[aria-expanded="true"] .nav-bar { transition: transform 0.3s ease, opacity 0.2s ease; }
+.nav-toggle[aria-expanded="true"] .nav-bar i { transition: transform 0.3s ease 0.3s; }
+.nav-toggle[aria-expanded="true"] .nav-bar--top,
+.nav-toggle[aria-expanded="true"] .nav-bar--bottom { transform: translateY(0); }
+.nav-toggle[aria-expanded="true"] .nav-bar--middle { opacity: 0; transition: opacity 0.2s ease; }
+.nav-toggle[aria-expanded="true"] .nav-bar--top i { transform: rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-bar--bottom i { transform: rotate(-45deg); }
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
   outline: 2px solid var(--gold-light); outline-offset: 3px;
 }
@@ -321,7 +329,7 @@ select.field option { background: var(--band); color: var(--white); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .menu-fixed, .btn { transition: none; }
-  .nav-toggle-icon span, .nav-toggle-icon span::before, .nav-toggle-icon span::after { transition: none !important; }
+  .nav-bar, .nav-bar i { transition: none !important; }
   .site-nav, .site-nav a { transition: none !important; }
   .site-nav a { transform: none; }
 }
