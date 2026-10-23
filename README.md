@@ -1,31 +1,20 @@
-# About — design reference
+# Lion Creative Media House: proof-of-concept website
 
-This is a design mockup created in a visual design tool, exported as a
-standalone page. Treat it as a REFERENCE MOCKUP, not production code:
-the markup and inline styles carry the design's precise values — colors,
-font sizes, spacing, radii, shadows, layout — which an implementation
-should replicate faithfully in its own components and styling system
-rather than copy wholesale.
+A plain static site (HTML, inline CSS, images). No build step and no dependencies.
 
-## Contents
+Open `index.html` in a browser to view it locally.
 
-- `About.dc.html` — the artboard (a Design Component: an `<x-dc>`
-  template + a small logic class). The values to replicate live in its
-  inline `style="…"` attributes and the `<helmet><style>` block.
-- `Footer.dc.html` — referenced resource
-- `Header.dc.html` — referenced resource
-- `assets/` — files uploaded to the design (images, fonts, media)
-- `support.js`, `vendor/react*.js` — the runtime that renders the
-  component in a browser; not part of the design.
+## Pages
+index.html (Home), portfolio.html, services.html, weddings.html, journal.html,
+article.html (sample article), about.html, testimonials.html, contact.html
 
-## Uploaded files
+## Host it
+- **GitHub Pages:** create a repo, upload these files to the repo root, then
+  Settings > Pages > Deploy from branch > main / (root).
+- **Netlify Drop:** drag this folder onto https://app.netlify.com/drop for an instant link.
 
-Images, fonts and media uploaded to the design are written once each under
-`assets/` — 4 in this export — and the exported files refer to them there. A
-reference a script puts together while the page runs (for example
-`"/_blob/" + id`) is not rewritten and does not load from this folder.
-
-## Viewing
-
-Serve the folder (e.g. `python3 -m http.server`) and open `About.dc.html`;
-some browsers block the scripts over file://.
+## Notes
+- Testimonials, journal articles and the WhatsApp number (+254 XXX XXX XXX) are samples/placeholders.
+- The contact form only shows a confirmation message; it does not send anything yet.
+- Illustrations in `images/*.svg` are placeholders until real photos are supplied.
+- Fonts (Big Shoulders Display, Manrope) load from Google Fonts, so the site needs an internet connection to show them correctly.
