@@ -1,0 +1,104 @@
+/* Lion Creative Media House: shared responsive styles.
+   Page styling lives inline in each HTML file; the rules below add the
+   hamburger menu and the phone-size adjustments. `!important` is needed
+   where a rule has to beat an inline style. */
+
+html { -webkit-text-size-adjust: 100%; }
+body { overflow-x: hidden; }
+img { max-width: 100%; }
+
+/* ---------- Header and hamburger menu ---------- */
+.site-header { position: relative; }
+
+.nav-toggle {
+  display: none;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  background: transparent;
+  border: 1.5px solid #E0A526;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #E0A526;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.nav-toggle:focus-visible,
+.site-nav a:focus-visible { outline: 2px solid #F4C95D; outline-offset: 3px; }
+
+@media (max-width: 960px) {
+  .nav-toggle { display: flex; }
+
+  .site-nav {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+    padding: 8px clamp(16px, 4vw, 48px) 24px;
+    background: #15120e;
+    border-bottom: 1px solid #2E2820;
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.5);
+    font-size: 17px !important;
+  }
+  .site-nav.open { display: flex !important; }
+
+  .site-nav a {
+    padding: 16px 0 !important;
+    border-bottom: 1px solid #2E2820 !important;
+  }
+  .site-nav a:last-child {
+    margin-top: 20px;
+    padding: 0 22px !important;
+    border-bottom: 0 !important;
+    justify-content: center;
+    min-height: 52px !important;
+  }
+}
+
+/* ---------- Phone adjustments ---------- */
+@media (max-width: 720px) {
+  /* tighter vertical rhythm */
+  [style*="padding: 96px"], [style*="padding: 112px"] { padding-top: 60px !important; padding-bottom: 60px !important; }
+  [style*="padding: 88px"] { padding-top: 48px !important; }
+  [style*="padding: 80px"] { padding-top: 40px !important; padding-bottom: 56px !important; }
+  [style*="padding: 72px"] { padding-top: 40px !important; padding-bottom: 56px !important; }
+
+  /* smaller gaps between stacked columns */
+  [style*="gap: 56px"], [style*="gap: 48px"] { gap: 32px !important; }
+  [style*="gap: 40px 56px"] { gap: 28px !important; }
+
+  /* shorter image blocks */
+  [style*="min-height: 560px"], [style*="min-height: 520px"], [style*="min-height: 480px"],
+  [style*="min-height: 460px"], [style*="min-height: 440px"], [style*="min-height: 420px"] { min-height: 340px !important; }
+  [style*="min-height: 380px"] { min-height: 280px !important; }
+  [style*="height: 460px"] { height: 320px !important; }
+
+  /* roomier-than-needed card padding */
+  [style*="padding: 36px"], [style*="padding: 32px"] { padding: 22px !important; }
+
+  /* full-width call-to-action buttons */
+  a[style*="min-height: 48px"], a[style*="min-height: 52px"] { width: 100%; box-sizing: border-box; }
+
+  /* easier-to-tap footer links */
+  footer a { display: inline-block; padding: 6px 0; }
+}
+
+@media (max-width: 420px) {
+  .site-header svg { width: 38px; height: 38px; }
+}

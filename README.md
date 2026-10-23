@@ -8,6 +8,8 @@ Open `index.html` in a browser to view it locally.
 index.html (Home), portfolio.html, services.html, our-stories.html,
 article.html (sample article), about.html, testimonials.html, contact.html
 
+Shared files: `styles.css` (menu and phone layout rules) and `nav.js` (hamburger menu).
+
 ## Host it
 - **GitHub Pages:** create a repo, upload these files to the repo root, then
   Settings > Pages > Deploy from branch > main / (root).

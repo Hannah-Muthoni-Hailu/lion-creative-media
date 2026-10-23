@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
 <title>Lion Creative Media House | Services</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +19,7 @@ input,textarea,select,button{font-family:'Manrope',system-ui,sans-serif}
 
 <div style="width: 100%; background: #15120e; color: #F1EADB; font-family: 'Manrope', system-ui, sans-serif">
 
-<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 20px clamp(16px, 4vw, 48px); border-bottom: 1px solid #2E2820; background: #15120e; font-family: 'Manrope', system-ui, sans-serif">
+<header class="site-header" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 20px clamp(16px, 4vw, 48px); border-bottom: 1px solid #2E2820; background: #15120e; font-family: 'Manrope', system-ui, sans-serif">
 <a href="index.html" style="display: flex; align-items: center; gap: 12px; color: #F1EADB" aria-label="Lion Creative Media House home">
 <svg width="44" height="44" viewBox="0 0 40 40" aria-hidden="true">
 <g fill="#E0A526">
@@ -43,7 +44,8 @@ input,textarea,select,button{font-family:'Manrope',system-ui,sans-serif}
 <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.28em; color: #B8AE9C; margin-top: 3px">CREATIVE MEDIA HOUSE</span>
 </span>
 </a>
-<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; font-size: 14px; font-weight: 600; letter-spacing: 0.04em">
+<button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+<nav id="site-nav" class="site-nav" aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; font-size: 14px; font-weight: 600; letter-spacing: 0.04em">
 <a href="index.html" style="color: #D9D0BE; padding: 6px 0; border-bottom: 2px solid transparent">Home</a>
 <a href="portfolio.html" style="color: #D9D0BE; padding: 6px 0; border-bottom: 2px solid transparent">Portfolio</a>
 <a href="services.html" style="color: #E0A526; padding: 6px 0; border-bottom: 2px solid #E0A526">Services</a>
@@ -51,7 +53,6 @@ input,textarea,select,button{font-family:'Manrope',system-ui,sans-serif}
 <a href="about.html" style="color: #D9D0BE; padding: 6px 0; border-bottom: 2px solid transparent">About</a>
 <a href="testimonials.html" style="color: #D9D0BE; padding: 6px 0; border-bottom: 2px solid transparent">Testimonials</a>
 <a href="contact.html" style="color: #D9D0BE; padding: 6px 0; border-bottom: 2px solid transparent">Contact</a>
-
 <a href="contact.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 22px; background: #E0A526; color: #15120e; font-size: 12px; font-weight: 800; letter-spacing: 0.14em">BOOK A SHOOT</a>
 </nav>
 </header>
@@ -215,5 +216,6 @@ input,textarea,select,button{font-family:'Manrope',system-ui,sans-serif}
 
 </div>
 
+<script src="nav.js"></script>
 </body>
 </html>
