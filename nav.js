@@ -3,13 +3,42 @@
   var header = document.querySelector('.site-header');
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('site-nav');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ----- Hamburger menu (tablet and phone) ----- */
+  /* ----- Full-screen menu (tablet and phone) -----
+     Opening fades in the overlay, then the links slide in one after another
+     while the hamburger lines merge and rotate into an X (all in styles.css). */
+  var STAGGER_MS = 90;
+  var timers = [];
+  var behind = [document.getElementById('main'), document.querySelector('.site-footer')];
+
+  function clearTimers() {
+    timers.forEach(clearTimeout);
+    timers = [];
+  }
+
   function setOpen(open) {
     if (!nav || !toggle) return;
+    clearTimers();
+    var links = nav.querySelectorAll('a');
+
     nav.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+
+    // keep keyboard and screen-reader focus inside the menu while it covers the page
+    behind.forEach(function (el) { if (el) el.inert = open; });
+
+    Array.prototype.forEach.call(links, function (a, i) {
+      if (!open) {
+        a.classList.remove('visible');
+      } else if (reduceMotion) {
+        a.classList.add('visible');
+      } else {
+        timers.push(setTimeout(function () { a.classList.add('visible'); }, 80 + i * STAGGER_MS));
+      }
+    });
   }
 
   if (nav && toggle) {
@@ -26,11 +55,15 @@
       }
     });
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 960) setOpen(false);
+      if (window.innerWidth > 960 && nav.classList.contains('open')) setOpen(false);
+    });
+    // returning via the browser's back button can restore a page with the menu open
+    window.addEventListener('pageshow', function () {
+      if (nav.classList.contains('open')) setOpen(false);
     });
   }
 
-  /* ----- Slim menu bar that pins to the top after the header scrolls away ----- */
+  /* ----- Slim menu bar that pins to the top after the header scrolls away (desktop) ----- */
   if (header && nav) {
     var bar = document.createElement('div');
     bar.className = 'menu-fixed';
@@ -38,6 +71,7 @@
     bar.innerHTML = nav.innerHTML;
     Array.prototype.forEach.call(bar.querySelectorAll('a'), function (a) {
       a.setAttribute('tabindex', '-1');
+      a.classList.remove('visible');
     });
     document.body.appendChild(bar);
 
