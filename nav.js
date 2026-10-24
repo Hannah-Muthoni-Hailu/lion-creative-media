@@ -92,17 +92,21 @@
   /* ----- Home hero: pictures crossfade automatically (no buttons) ----- */
   var slides = document.querySelectorAll('.hero-slides .hero-img');
   if (slides.length > 1) {
-    var current = 0, leaving = null, SLIDE_MS = 6500;
-    setInterval(function () {
-      if (document.hidden) return; // pause while the tab is in the background
-      if (leaving) leaving.classList.remove('is-leaving');
-      leaving = slides[current];
-      leaving.classList.remove('is-active');
-      leaving.classList.add('is-leaving');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('is-active');
-      slides[current].classList.remove('is-leaving');
-    }, SLIDE_MS);
+    var current = 0, leaving = null;
+    var FIRST_MS = 2500, SLIDE_MS = 5000; // first change comes quickly, then a steady pace
+    var advance = function () {
+      if (!document.hidden) { // pause while the tab is in the background
+        if (leaving) leaving.classList.remove('is-leaving');
+        leaving = slides[current];
+        leaving.classList.remove('is-active');
+        leaving.classList.add('is-leaving');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('is-active');
+        slides[current].classList.remove('is-leaving');
+      }
+      setTimeout(advance, SLIDE_MS);
+    };
+    setTimeout(advance, FIRST_MS);
   }
 
   /* ----- Demo enquiry forms: confirm on screen, send nothing ----- */

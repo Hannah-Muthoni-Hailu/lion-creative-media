@@ -112,8 +112,8 @@ p { margin: 0 0 14px; }
 .call-btn:hover { background: var(--black); border-color: var(--black); color: var(--gold); }
 
 .site-nav {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 34px;
-  padding: 15px var(--gutter); border-top: 1px solid var(--line-light);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 22px;
+  padding: 12px max(var(--gutter), calc((100% - 1200px) / 2)); border-top: 1px solid var(--line-light);
 }
 .site-nav a, .menu-fixed a {
   font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
@@ -124,7 +124,16 @@ p { margin: 0 0 14px; }
 .site-nav a[aria-current="page"], .menu-fixed a[aria-current="page"] {
   color: var(--black); border-bottom-color: var(--gold);
 }
-.nav-extra { display: none; }
+.header-top .call-btn { display: none; } /* on desktop the call button sits in the menu row */
+.site-nav .nav-extra {
+  display: inline-flex; align-items: center; gap: 9px; flex: none; min-height: 40px; padding: 0 20px;
+  background: var(--gold); color: var(--black); border: 1px solid var(--gold);
+  font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.site-nav .nav-extra:hover { background: var(--black); border-color: var(--black); color: var(--gold); }
+.ne-call { font-weight: 700; display: none; }
+.menu-fixed .nav-extra { display: none; }
 
 /* slim bar that pins to the top once the full header has scrolled away (desktop) */
 .menu-fixed {
@@ -182,10 +191,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* Slides crossfade on their own (nav.js adds .is-active in turn); the active one drifts slowly. */
 .hero-img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  opacity: 0; transform: scale(1); transition: opacity 1.4s ease-in-out;
+  opacity: 0; transform: scale(1); transition: opacity 1s ease-in-out;
 }
-.hero-img.is-active { opacity: 1; z-index: 1; transform: scale(1.08); transition: opacity 1.4s ease-in-out, transform 9s linear; }
-.hero-img.is-leaving { opacity: 0; z-index: 0; transform: scale(1.08); transition: opacity 1.4s ease-in-out; }
+.hero-img.is-active { opacity: 1; z-index: 1; transform: scale(1.08); transition: opacity 1s ease-in-out, transform 7s linear; }
+.hero-img.is-leaving { opacity: 0; z-index: 0; transform: scale(1.08); transition: opacity 1s ease-in-out; }
 /* dark overlay: strongest behind the text on the left, lighter towards the right */
 .hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
@@ -374,6 +383,13 @@ select.field option { background: var(--band); color: var(--white); }
 .copy a:hover { color: var(--white); }
 
 /* ---------- Tablet ---------- */
+/* narrow desktops: tighten the menu row so the call button stays on the same line */
+@media (min-width: 961px) and (max-width: 1180px) {
+  .site-nav { gap: 8px 14px; }
+  .site-nav a { font-size: 11px; letter-spacing: 0.03em; }
+  .site-nav .nav-extra { padding: 0 12px; min-height: 36px; font-size: 13px; gap: 7px; }
+}
+
 @media (max-width: 960px) {
   :root { --gutter: 24px; }
   .band--top { padding-top: 64px; }
@@ -394,7 +410,8 @@ select.field option { background: var(--band); color: var(--white); }
   .site-header { position: sticky; top: 0; }
   .header-top { height: var(--header-h); padding-top: 0; padding-bottom: 0; }
   .logo img { height: 52px; }
-  .call-btn { margin-left: auto; }
+  .header-top .call-btn { display: inline-flex; margin-left: auto; }
+  .ne-call { display: inline; }
   .nav-toggle { display: flex; }
   .menu-fixed { display: none; }
 
@@ -419,7 +436,7 @@ select.field option { background: var(--band); color: var(--white); }
   .site-nav a:last-child { margin-bottom: 0; }
   .site-nav .nav-extra {
     display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px;
-    padding: 0 28px; margin-top: 12px; background: var(--gold); border: 1px solid var(--gold); color: var(--black);
+    padding: 0 28px; margin-top: 12px; text-transform: none; background: var(--gold); border: 1px solid var(--gold); color: var(--black);
     font-size: 14px; font-weight: 700; letter-spacing: 0.08em;
   }
   .site-nav .nav-extra:hover { background: var(--white); border-color: var(--white); color: var(--black); }
