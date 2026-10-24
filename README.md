@@ -37,3 +37,8 @@ On tablet and phone the header becomes a sticky bar (logo, call button, hamburge
 - Only four photos exist so far (`wedding`, `portrait-bw`, `portrait-red`, `lipstick`). Category pages and the wedding page reuse them, and the `images/*.svg` illustrations stand in until real photos are supplied.
 - Fonts (Cormorant Garamond, Ubuntu, Big Shoulders Display) load from Google Fonts, so the site needs an internet connection to show them correctly.
 - `our-stories.html` became `journal.html` (menu label "Insights"); the old Portfolio page is now labelled "Our Projects".
+
+## Home page carousel and service cards
+
+- The hero crossfades through `images/hero-1.jpg` to `hero-5.jpg` every 6.5 seconds (`nav.js`, no buttons). To change the pictures, replace those files or edit the `<img class="hero-img">` list in `index.html`; at least two images are needed.
+- The six service cards on the home page link to `services.html#photography`, `#video`, `#weddings-events`, `#editing`, `#branding` and `#production`. Their pictures are `images/svc-*.jpg`.

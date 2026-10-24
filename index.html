@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=Ubuntu:wght@300;400;700&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -31,8 +31,14 @@
 </nav>
 </header>
 <main id="main">
-<section class="hero">
-<img class="hero-img" src="images/wedding.jpg" alt="" fetchpriority="high">
+<section class="hero" aria-label="Featured work">
+<div class="hero-slides" aria-hidden="true">
+<img class="hero-img is-active" src="images/hero-1.jpg" alt="" fetchpriority="high" style="object-position:50% 40%">
+<img class="hero-img" src="images/hero-2.jpg" alt="" style="object-position:60% 30%">
+<img class="hero-img" src="images/hero-3.jpg" alt="" style="object-position:50% 40%">
+<img class="hero-img" src="images/hero-4.jpg" alt="" style="object-position:50% 50%">
+<img class="hero-img" src="images/hero-5.jpg" alt="" style="object-position:50% 45%">
+</div>
 <div class="wrap hero-inner">
 <h1><span class="gold">No. 1</span> Videography &amp; Photography Creative Experts</h1>
 <a class="btn-fill" href="services.html">Explore Our Services</a>
@@ -51,34 +57,66 @@
 </div>
 </section>
 
-<section class="band" style="padding-top:32px">
-<div class="wrap pair">
-<div class="frame ratio-45"><img src="images/portrait-red.jpg" alt="Woman in a black blazer and red jumpsuit smiling in a studio portrait" style="object-position:center 25%"></div>
-<div class="frame ratio-45"><img src="images/portrait-bw.jpg" alt="Black and white studio portrait of a woman with braided, curly hair" style="object-position:center 30%"></div>
-</div>
-</section>
-
-<section class="band band--head">
+<section class="band band--services" id="services">
 <div class="wrap">
+<header class="section-head">
+<span class="eyebrow">What we do</span>
 <h2 class="band-title">Our Services</h2>
+<span class="rule" aria-hidden="true"></span>
+<p>Photography, film, editing, branding and specialised production, all under one roof.</p>
+</header>
+<div class="svc-grid">
+<a class="svc-card" href="services.html#photography">
+<span class="svc-media"><img src="images/svc-photography.jpg" alt="A man in a white and leopard-print cape crouching in the street holding a spear" loading="lazy" style="object-position:center 30%"></span>
+<span class="svc-body">
+<h3>Photography</h3>
+<p>Portraits, products, fashion, corporate and lifestyle images made with considered light.</p>
+<span class="svc-more">Learn more <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+</span>
+</a>
+<a class="svc-card" href="services.html#video">
+<span class="svc-media"><img src="images/svc-video.jpg" alt="A videographer filming with a camera on a handheld gimbal" loading="lazy" style="object-position:50% 35%"></span>
+<span class="svc-body">
+<h3>Video Production</h3>
+<p>Brand films, event highlights, social reels and commercial video, from concept to final cut.</p>
+<span class="svc-more">Learn more <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+</span>
+</a>
+<a class="svc-card" href="services.html#weddings-events">
+<span class="svc-media"><img src="images/svc-weddings-events.jpg" alt="A bride and groom posing beside red foliage at night" loading="lazy" style="object-position:50% 30%"></span>
+<span class="svc-body">
+<h3>Weddings &amp; Events</h3>
+<p>Weddings, engagements and celebrations, covering the big moments and the quiet ones.</p>
+<span class="svc-more">Learn more <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+</span>
+</a>
+<a class="svc-card" href="services.html#editing">
+<span class="svc-media"><img src="images/svc-editing.jpg" alt="A groom in a white tuxedo holding a bride in a beaded lace gown" loading="lazy" style="object-position:center 30%"></span>
+<span class="svc-body">
+<h3>Editing &amp; Post-production</h3>
+<p>Video editing, colour grading, motion graphics, audio cleanup and photo retouching.</p>
+<span class="svc-more">Learn more <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+</span>
+</a>
+<a class="svc-card" href="services.html#branding">
+<span class="svc-media"><img src="images/svc-branding.jpg" alt="A woman in an African print top and head wrap seated at a podcast microphone" loading="lazy" style="object-position:70% 40%"></span>
+<span class="svc-body">
+<h3>Branding &amp; Digital Content</h3>
+<p>Graphic design, brand identity and social content that keeps your brand consistent.</p>
+<span class="svc-more">Learn more <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+</span>
+</a>
+<a class="svc-card" href="services.html#production">
+<span class="svc-media"><img src="images/svc-digital.jpg" alt="Two women recording a podcast with microphones and a ring light" loading="lazy" style="object-position:center 40%"></span>
+<span class="svc-body">
+<h3>Digital &amp; Specialised Production</h3>
+<p>Websites, podcasts, drone media, livestreaming and production support.</p>
+<span class="svc-more">Learn more <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+</span>
+</a>
 </div>
-</section>
-
-<section class="band">
-<div class="wrap grid-3 block">
-<div><h3>Photography</h3><p>Portraits, products, corporate photography, food, fashion, property and lifestyle, made with considered light and a clear point of view.</p></div>
-<div><h3>Video Production</h3><p>Brand films, event highlights, social reels and commercial video, built from the first concept through to the final cut.</p></div>
-<div><h3>Weddings &amp; Events</h3><p>Weddings, engagements, corporate events and celebrations, covering the big moments and the quiet ones in between.</p></div>
+<p class="links links--center"><a class="link" href="services.html">View all services</a></p>
 </div>
-</section>
-
-<section class="band">
-<div class="wrap grid-3 block">
-<div><h3>Editing &amp; Post-production</h3><p>Video editing, colour grading, motion graphics, audio cleanup and photo retouching.</p></div>
-<div><h3>Branding &amp; Digital Content</h3><p>Graphic design, brand identity, social media content and account management.</p></div>
-<div><h3>Digital &amp; Specialised Production</h3><p>Websites, podcasts, drone media, livestreaming and production support.</p></div>
-</div>
-<div class="wrap"><p class="links"><a class="link" href="services.html">All services</a></p></div>
 </section>
 
 <section class="band band--tall">
@@ -153,6 +191,6 @@
 <p class="copy">&copy; 2026 Lion Creative Media House. All rights reserved.</p>
 </div>
 </footer>
-<script src="nav.js?v=4"></script>
+<script src="nav.js?v=5"></script>
 </body>
 </html>

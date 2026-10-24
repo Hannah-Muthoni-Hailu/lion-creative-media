@@ -178,10 +178,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   position: relative; isolation: isolate; display: flex; align-items: center;
   min-height: clamp(460px, 74vh, 700px); background: #111; overflow: hidden;
 }
+.hero-slides { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+/* Slides crossfade on their own (nav.js adds .is-active in turn); the active one drifts slowly. */
 .hero-img {
-  position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%;
-  object-fit: cover; object-position: 50% 30%;
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1); transition: opacity 1.4s ease-in-out;
 }
+.hero-img.is-active { opacity: 1; z-index: 1; transform: scale(1.08); transition: opacity 1.4s ease-in-out, transform 9s linear; }
+.hero-img.is-leaving { opacity: 0; z-index: 0; transform: scale(1.08); transition: opacity 1.4s ease-in-out; }
 /* dark overlay: strongest behind the text on the left, lighter towards the right */
 .hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
@@ -207,6 +211,56 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .welcome .rule { display: block; width: 56px; height: 2px; margin: 0 auto 26px; background: var(--gold); }
 .welcome h2 { margin-bottom: 18px; }
 .welcome p { font-size: 17px; line-height: 1.75; }
+
+/* ---------- Our Services (home): centred heading and clickable cards ---------- */
+.band--services {
+  padding: 96px 0 104px; background: var(--band);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  background-image: radial-gradient(ellipse 60% 40% at 50% 0, rgba(224, 165, 38, 0.14), rgba(224, 165, 38, 0) 70%);
+}
+.section-head { max-width: 760px; margin: 0 auto 60px; text-align: center; }
+.eyebrow {
+  display: inline-block; margin-bottom: 14px; color: var(--gold);
+  font-size: 13px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase;
+}
+.section-head h2 {
+  margin: 0; font-size: clamp(46px, 7vw, 88px); line-height: 1; letter-spacing: 0.04em;
+  color: var(--white); text-shadow: 0 0 40px rgba(224, 165, 38, 0.28);
+}
+.section-head .rule { display: block; width: 84px; height: 3px; margin: 26px auto 22px; background: var(--gold); }
+.section-head p { margin: 0 auto; max-width: 560px; font-size: 18px; line-height: 1.7; color: var(--text); }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.svc-card {
+  position: relative; display: flex; flex-direction: column; overflow: hidden;
+  background: var(--black); border: 1px solid var(--line); color: inherit; text-decoration: none;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.svc-card::after { /* gold line that sweeps across the bottom edge on hover */
+  content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 3px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.45s ease;
+}
+.svc-media { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #1d1d1d; }
+.svc-media img { width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform 0.7s ease, filter 0.5s ease; filter: saturate(0.95); }
+.svc-body { display: flex; flex-direction: column; flex: 1; padding: 26px 26px 28px; }
+.svc-body h3 { margin: 0 0 10px; color: var(--white); font-size: clamp(26px, 2.4vw, 32px); font-style: italic; line-height: 1.15; transition: color 0.3s ease; }
+.svc-body p { margin: 0 0 22px; font-size: 15px; line-height: 1.65; color: var(--muted); }
+.svc-more {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: auto; color: var(--gold);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.svc-more svg { transition: transform 0.3s ease; }
+.svc-card:hover, .svc-card:focus-visible {
+  transform: translateY(-8px); border-color: var(--gold);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(224, 165, 38, 0.35);
+}
+.svc-card:hover::after, .svc-card:focus-visible::after { transform: scaleX(1); }
+.svc-card:hover .svc-media img, .svc-card:focus-visible .svc-media img { transform: scale(1.09); filter: saturate(1.1); }
+.svc-card:hover h3, .svc-card:focus-visible h3 { color: var(--gold-light); }
+.svc-card:hover .svc-more svg, .svc-card:focus-visible .svc-more svg { transform: translateX(6px); }
+.band--services .links--center { margin-top: 56px; }
+
+/* the services page cards are targets of the links above */
+.card { scroll-margin-top: calc(var(--header-h) + 24px); }
 
 /* ---------- Pictures ---------- */
 .frame { position: relative; overflow: hidden; background: #1d1d1d; }
@@ -325,6 +379,9 @@ select.field option { background: var(--band); color: var(--white); }
   .band--top { padding-top: 64px; }
   .band--tall { padding: 64px 0; }
   .band--head { padding-top: 56px; }
+  .svc-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .band--services { padding: 72px 0 80px; }
+  .section-head { margin-bottom: 44px; }
   .grid-2, .pair { grid-template-columns: 1fr; gap: 36px; }
   .grid-3, .cards { grid-template-columns: 1fr 1fr; gap: 40px 32px; }
   .cards.two { grid-template-columns: 1fr; gap: 48px; }
@@ -375,6 +432,9 @@ select.field option { background: var(--band); color: var(--white); }
   .band--top { padding-top: 44px; }
   .band--tall { padding: 52px 0; }
   .band--head { padding-top: 44px; }
+  .svc-grid { grid-template-columns: 1fr; gap: 26px; }
+  .band--services { padding: 56px 0 64px; }
+  .section-head p { font-size: 16px; }
   .grid-3, .cards, .grid-4, .gallery { grid-template-columns: 1fr; gap: 36px; }
   .entry { grid-template-columns: 1fr; gap: 18px; }
   .quote { gap: 20px; }
@@ -396,6 +456,10 @@ select.field option { background: var(--band); color: var(--white); }
   html { scroll-behavior: auto; }
   .menu-fixed, .btn, .btn-fill, .call-btn, .site-nav a { transition: none; }
   .nav-bar, .nav-bar i { transition: none !important; }
+  .hero-img, .hero-img.is-active, .hero-img.is-leaving { transition: opacity 0.01s; transform: none; }
+  .svc-card, .svc-card::after, .svc-media img, .svc-more svg { transition: none; }
+  .svc-card:hover, .svc-card:focus-visible { transform: none; }
+  .svc-card:hover .svc-media img { transform: none; }
   .site-nav, .site-nav a { transition: none !important; }
   .site-nav a { transform: none; }
 }
