@@ -93,7 +93,7 @@
   var slides = document.querySelectorAll('.hero-slides .hero-img');
   if (slides.length > 1) {
     var current = 0, leaving = null;
-    var FIRST_MS = 2500, SLIDE_MS = 5000; // first change comes quickly, then a steady pace
+    var FIRST_MS = 1000, SLIDE_MS = 5000; // first change comes quickly, then a steady pace
     var advance = function () {
       if (!document.hidden) { // pause while the tab is in the background
         if (leaving) leaving.classList.remove('is-leaving');

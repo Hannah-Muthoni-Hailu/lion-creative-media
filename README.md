@@ -40,5 +40,5 @@ On tablet and phone the header becomes a sticky bar (logo, call button, hamburge
 
 ## Home page carousel and service cards
 
-- The hero crossfades through `images/hero-1.jpg` to `hero-5.jpg` every 5 seconds (the first change after 2.5) (`nav.js`, no buttons). To change the pictures, replace those files or edit the `<img class="hero-img">` list in `index.html`; at least two images are needed.
+- The hero crossfades through `images/hero-1.jpg` to `hero-5.jpg` every 5 seconds (the first change after 1) (`nav.js`, no buttons). To change the pictures, replace those files or edit the `<img class="hero-img">` list in `index.html`; at least two images are needed.
 - The six service cards on the home page link to `services.html#photography`, `#video`, `#weddings-events`, `#editing`, `#branding` and `#production`. Their pictures are `images/svc-*.jpg`.
