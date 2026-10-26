@@ -124,6 +124,34 @@ p { margin: 0 0 14px; }
 .site-nav a[aria-current="page"], .menu-fixed a[aria-current="page"] {
   color: var(--black); border-bottom-color: var(--gold);
 }
+/* drop-down lists under Our Services and Our Projects */
+.nav-item { position: relative; display: inline-flex; align-items: center; gap: 3px; }
+.sub-toggle {
+  display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 26px; padding: 0;
+  background: none; border: 0; color: var(--black); cursor: pointer;
+}
+.sub-toggle svg { transition: transform 0.25s ease; }
+.menu-fixed .sub-toggle { pointer-events: none; }
+.sub {
+  position: absolute; top: 100%; left: -18px; z-index: 80; min-width: 290px; margin: 0; padding: 10px 0; list-style: none;
+  background: var(--white); border-top: 3px solid var(--gold); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+}
+.sub::before { content: ""; position: absolute; left: 0; right: 0; top: -22px; height: 22px; } /* keeps hover alive across the gap */
+.site-nav .sub a, .menu-fixed .sub a {
+  display: block; padding: 11px 22px; border-bottom: 0; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.06em; color: var(--black);
+}
+.site-nav .sub a:hover, .menu-fixed .sub a:hover { background: #f4f1e8; color: var(--black); box-shadow: inset 3px 0 0 var(--gold); }
+.nav-item.open .sub { opacity: 1; visibility: visible; transform: none; transition: opacity 0.2s ease, transform 0.2s ease; }
+.nav-item.open .sub-toggle svg { transform: rotate(180deg); }
+@media (min-width: 961px) {
+  .nav-item:hover .sub, .nav-item:focus-within .sub { opacity: 1; visibility: visible; transform: none; transition: opacity 0.2s ease, transform 0.2s ease; }
+  .nav-item:hover .sub-toggle svg, .nav-item:focus-within .sub-toggle svg { transform: rotate(180deg); }
+  .menu-fixed .nav-item { height: 44px; }
+}
+
 .header-top .call-btn { display: none; } /* on desktop the call button sits in the menu row */
 .site-nav .nav-extra {
   display: inline-flex; align-items: center; gap: 9px; flex: none; min-height: 40px; padding: 0 20px;
@@ -418,22 +446,38 @@ select.field option { background: var(--band); color: var(--white); }
   /* full-screen menu under the bar: the links slide in one after another (see nav.js) */
   .site-nav {
     position: fixed; top: calc(var(--header-h) + 1px); right: 0; bottom: 0; left: 0; z-index: 60; gap: 0;
-    flex-direction: column; flex-wrap: nowrap; align-items: center; justify-content: center;
+    flex-direction: column; flex-wrap: nowrap; align-items: center; justify-content: safe center;
     padding: 40px var(--gutter) 32px; overflow-y: auto; border-top: 0;
     background: transparent; -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
     visibility: hidden; transition: background 0.25s, visibility 0s linear 0.25s;
   }
   .site-nav.open { visibility: visible; background: rgba(13, 13, 13, 0.98); transition: background 0.25s; }
   .site-nav a {
-    font-size: 18px; font-weight: 400; letter-spacing: 0.9px; padding: 0; margin-bottom: 28px;
+    font-size: 18px; font-weight: 400; letter-spacing: 0.9px; padding: 0;
     color: var(--white); border-bottom: 0; text-align: center;
-    opacity: 0; transform: translateX(-30px);
+  }
+  .site-nav > a, .site-nav > .nav-item {
+    margin-bottom: 28px; opacity: 0; transform: translateX(-30px);
     transition: opacity 0.25s ease-out, transform 0.25s ease-out, color 0.2s;
   }
   .site-nav a:hover { color: var(--gold); border-bottom: 0; }
-  .site-nav a.visible { opacity: 1; transform: none; }
+  .site-nav > .visible { opacity: 1; transform: none; }
+  /* drop-down lists become tap-to-open lists inside the full-screen menu */
+  .nav-item { flex-wrap: wrap; justify-content: center; gap: 4px; }
+  .sub-toggle { width: 36px; height: 36px; color: var(--white); }
+  .sub-toggle svg { width: 14px; height: 14px; }
+  .sub {
+    position: static; flex: 0 0 100%; min-width: 0; padding: 0; background: transparent; border-top: 0; box-shadow: none;
+    opacity: 1; transform: none; max-height: 0; overflow: hidden; visibility: hidden;
+    transition: max-height 0.35s ease, visibility 0s linear 0.35s;
+  }
+  .sub::before { display: none; }
+  .nav-item.open .sub { max-height: 420px; visibility: visible; transition: max-height 0.4s ease; margin-top: 10px; }
+  .site-nav .sub a { padding: 9px 0; font-size: 15px; letter-spacing: 0.4px; color: #cbc6ba; }
+  .site-nav .sub a:hover { background: transparent; box-shadow: none; color: var(--gold); }
+  .site-nav .sub li:last-child a { padding-bottom: 0; }
   .site-nav a[aria-current="page"] { color: var(--white); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
-  .site-nav a:last-child { margin-bottom: 0; }
+  .site-nav > :last-child { margin-bottom: 0; }
   .site-nav .nav-extra {
     display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px;
     padding: 0 28px; margin-top: 12px; text-transform: none; background: var(--gold); border: 1px solid var(--gold); color: var(--black);
@@ -471,14 +515,14 @@ select.field option { background: var(--band); color: var(--white); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .menu-fixed, .btn, .btn-fill, .call-btn, .site-nav a { transition: none; }
+  .menu-fixed, .btn, .btn-fill, .call-btn, .site-nav a, .sub, .sub-toggle svg { transition: none !important; }
   .nav-bar, .nav-bar i { transition: none !important; }
   .hero-img, .hero-img.is-active, .hero-img.is-leaving { transition: opacity 0.01s; transform: none; }
   .svc-card, .svc-card::after, .svc-media img, .svc-more svg { transition: none; }
   .svc-card:hover, .svc-card:focus-visible { transform: none; }
   .svc-card:hover .svc-media img { transform: none; }
-  .site-nav, .site-nav a { transition: none !important; }
-  .site-nav a { transform: none; }
+  .site-nav, .site-nav a, .site-nav > .nav-item { transition: none !important; }
+  .site-nav > a, .site-nav > .nav-item { transform: none; }
 }
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

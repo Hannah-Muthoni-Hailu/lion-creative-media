@@ -17,10 +17,21 @@
     timers = [];
   }
 
+  /* ----- Drop-down lists (Our Services, Our Projects) ----- */
+  function closeSubs(except) {
+    if (!nav) return;
+    Array.prototype.forEach.call(nav.querySelectorAll('.nav-item.open'), function (item) {
+      if (item === except) return;
+      item.classList.remove('open');
+      item.querySelector('.sub-toggle').setAttribute('aria-expanded', 'false');
+    });
+  }
+
   function setOpen(open) {
     if (!nav || !toggle) return;
     clearTimers();
-    var links = nav.querySelectorAll('a');
+    var links = nav.querySelectorAll(':scope > a, :scope > .nav-item');
+    if (!open) closeSubs();
 
     nav.classList.toggle('open', open);
     document.body.classList.toggle('menu-open', open);
@@ -46,12 +57,31 @@
       setOpen(!nav.classList.contains('open'));
     });
     nav.addEventListener('click', function (e) {
+      var tog = e.target.closest('.sub-toggle');
+      if (tog) { // the arrow next to a menu item opens or closes its list
+        var item = tog.parentNode;
+        var willOpen = !item.classList.contains('open');
+        closeSubs(item);
+        item.classList.toggle('open', willOpen);
+        tog.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        return;
+      }
       if (e.target.closest('a')) setOpen(false);
     });
+    // on desktop, clicking elsewhere closes a list that was opened with the arrow
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav-item')) closeSubs();
+    });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && nav.classList.contains('open')) {
-        setOpen(false);
-        toggle.focus();
+      if (e.key === 'Escape') {
+        if (nav.classList.contains('open')) {
+          setOpen(false);
+          toggle.focus();
+        } else if (nav.querySelector('.nav-item.open')) {
+          closeSubs();
+        } else if (document.activeElement && document.activeElement.closest('.sub') && document.activeElement.blur) {
+          document.activeElement.blur(); // hides a list that is showing because of keyboard focus
+        }
       }
     });
     window.addEventListener('resize', function () {
@@ -71,8 +101,9 @@
     bar.innerHTML = nav.innerHTML;
     Array.prototype.forEach.call(bar.querySelectorAll('a'), function (a) {
       a.setAttribute('tabindex', '-1');
-      a.classList.remove('visible');
     });
+    Array.prototype.forEach.call(bar.querySelectorAll('.sub-toggle'), function (b) { b.setAttribute('tabindex', '-1'); });
+    Array.prototype.forEach.call(bar.children, function (el) { el.classList.remove('visible'); });
     document.body.appendChild(bar);
 
     var ticking = false;

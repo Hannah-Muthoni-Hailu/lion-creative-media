@@ -42,3 +42,7 @@ On tablet and phone the header becomes a sticky bar (logo, call button, hamburge
 
 - The hero crossfades through `images/hero-1.jpg` to `hero-5.jpg` every 5 seconds (the first change after 1) (`nav.js`, no buttons). To change the pictures, replace those files or edit the `<img class="hero-img">` list in `index.html`; at least two images are needed.
 - The six service cards on the home page link to `services.html#photography`, `#video`, `#weddings-events`, `#editing`, `#branding` and `#production`. Their pictures are `images/svc-*.jpg`.
+
+## Drop-down menus
+
+Our Services (the six services) and Our Projects (the six project categories) open a list on hover or keyboard focus on desktop, and with the small arrow on touch screens and in the phone menu. The lists are generated from `SUBMENUS` in the page generator; to edit them by hand, change the `<ul class="sub">` in each page's header.
