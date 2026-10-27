@@ -46,3 +46,7 @@ On tablet and phone the header becomes a sticky bar (logo, call button, hamburge
 ## Drop-down menus
 
 Our Services (the six services) and Our Projects (the six project categories) open a list on hover or keyboard focus on desktop, and with the small arrow on touch screens and in the phone menu. The lists are generated from `SUBMENUS` in the page generator; to edit them by hand, change the `<ul class="sub">` in each page's header.
+
+## Content structure (from the client's notes)
+
+Services are four divisions: Commercial & Brand Production, Events & Corporate Coverage, People & Professional Photography, and Post-production & Specialised Production (`services.html#commercial-brand`, `#events-corporate`, `#people-photography`, `#post-production`). The Services page also carries the ten-step production workflow (`#workflow`); About carries the five differentiators, the team structure and the three standards. Internal notes in the brief (such as which division drives growth or cash flow) are deliberately not published.
