@@ -1,4 +1,4 @@
-// Lion Creative Media House: header behaviour and the demo enquiry form.
+// Lion Creative Media: header behaviour and the demo enquiry form.
 (function () {
   var header = document.querySelector('.site-header');
   var toggle = document.querySelector('.nav-toggle');
@@ -30,7 +30,7 @@
   function setOpen(open) {
     if (!nav || !toggle) return;
     clearTimers();
-    var links = nav.querySelectorAll(':scope > a, :scope > .nav-item');
+    var links = nav.querySelectorAll(':scope > a, :scope > .nav-item, :scope > .nav-social');
     if (!open) closeSubs();
 
     nav.classList.toggle('open', open);
@@ -139,6 +139,11 @@
     };
     setTimeout(advance, FIRST_MS);
   }
+
+  /* ----- Social icons: links will be added later, so "#" does nothing for now ----- */
+  Array.prototype.forEach.call(document.querySelectorAll('.social-link[href="#"]'), function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); });
+  });
 
   /* ----- Demo enquiry forms: confirm on screen, send nothing ----- */
   Array.prototype.forEach.call(document.querySelectorAll('form[data-demo-form]'), function (form) {

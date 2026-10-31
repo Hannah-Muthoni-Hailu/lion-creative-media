@@ -1,4 +1,4 @@
-# Lion Creative Media House: proof-of-concept website
+# Lion Creative Media: proof-of-concept website
 
 A plain static site (HTML, one stylesheet, one small script, images). No build step and no dependencies.
 
@@ -50,3 +50,7 @@ Our Services (the six services) and Our Projects (the six project categories) op
 ## Content structure (from the client's notes)
 
 Services are four divisions: Commercial & Brand Production, Events & Corporate Coverage, People & Professional Photography, and Post-production & Specialised Production (`services.html#commercial-brand`, `#events-corporate`, `#people-photography`, `#post-production`). The Services page also carries the ten-step production workflow (`#workflow`); About carries the five differentiators, the team structure and the three standards. Internal notes in the brief (such as which division drives growth or cash flow) are deliberately not published.
+
+## Behind the Scenes (BTS)
+
+`bts.html` + `bts.js` show Instagram reels listed in a published Google Sheet. See `BTS-GUIDE.md` for how the owner adds reels and how to connect the sheet. `photography-videography.html` now sits under Our Projects.
