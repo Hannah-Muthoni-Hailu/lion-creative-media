@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=Ubuntu:wght@300;400;700&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=9">
+<link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -23,7 +23,7 @@
 <nav id="site-nav" class="site-nav" aria-label="Main">
 <a href="index.html">Home</a>
 <a href="about.html">About Us</a>
-<div class="nav-item has-sub"><a href="services.html">Our Services</a><button type="button" class="sub-toggle" aria-expanded="false" aria-label="Show Our Services list"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true" focusable="false"><path d="M2 4.2l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="sub"><li><a href="services.html#commercial-brand"><span class="sub-title">Commercial &amp; Brand Production</span><span class="sub-desc">Product shoots, brand films, company profiles and campaign content.</span></a></li><li><a href="services.html#events-corporate"><span class="sub-title">Events &amp; Corporate Coverage</span><span class="sub-desc">Conferences, launches, weddings and award ceremonies, with same-day edits.</span></a></li><li><a href="services.html#people-photography"><span class="sub-title">People &amp; Professional Photography</span><span class="sub-desc">Headshots, executive portraits, team and family photography.</span></a></li><li><a href="services.html#post-production"><span class="sub-title">Post-production &amp; Specialised Production</span><span class="sub-desc">Editing, grading, motion graphics, drone, podcast and livestream work.</span></a></li></ul></div>
+<div class="nav-item has-sub"><a href="services.html">Our Services</a><button type="button" class="sub-toggle" aria-expanded="false" aria-label="Show Our Services list"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true" focusable="false"><path d="M2 4.2l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="sub"><li><a href="service-commercial-photography.html"><span class="sub-title">Commercial Photography</span><span class="sub-desc">Professional images that help your business look its best online and in print.</span></a></li><li><a href="service-product-photography.html"><span class="sub-title">Product Photography</span><span class="sub-desc">Clean, eye-catching product photos that make people want to buy.</span></a></li><li><a href="service-videography-brand-films.html"><span class="sub-title">Videography &amp; Brand Films</span><span class="sub-desc">Company profiles, brand films and adverts that tell your story.</span></a></li><li><a href="service-event-coverage.html"><span class="sub-title">Event Coverage</span><span class="sub-desc">Weddings, birthdays, conferences and launches, covered from start to finish.</span></a></li><li><a href="service-portrait-photography.html"><span class="sub-title">Portrait Photography</span><span class="sub-desc">Confident headshots and portraits for individuals, executives and teams.</span></a></li><li><a href="service-maternity-photoshoot.html"><span class="sub-title">Maternity Photoshoot</span><span class="sub-desc">Relaxed, beautiful portraits that celebrate this special time.</span></a></li><li><a href="service-video-editing-post-production.html"><span class="sub-title">Video Editing &amp; Post Production</span><span class="sub-desc">Cutting, colour, sound and motion graphics that polish your footage.</span></a></li><li><a href="service-drone-podcast-livestream.html"><span class="sub-title">Drone, Podcast &amp; Livestream</span><span class="sub-desc">Aerial shots, podcast filming and live broadcasts.</span></a></li></ul></div>
 <a href="bts.html">BTS</a>
 <a href="journal.html">Insights</a>
 <div class="nav-item has-sub"><a href="portfolio.html">Our Projects</a><button type="button" class="sub-toggle" aria-expanded="false" aria-label="Show Our Projects list"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true" focusable="false"><path d="M2 4.2l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="sub sub--left"><li><a href="weddings.html"><span class="sub-title">Weddings</span><span class="sub-desc">The vows, up close: ceremonies, portraits and celebrations.</span></a></li><li><a href="portfolio-portraits.html"><span class="sub-title">Portraits</span><span class="sub-desc">Quiet light, in black and white. Portraits shaped around who you are.</span></a></li><li><a href="portfolio-fashion-editorial.html"><span class="sub-title">Fashion &amp; Editorial</span><span class="sub-desc">Styled shoots and editorial work with a clear point of view.</span></a></li><li><a href="portfolio-product-advertising.html"><span class="sub-title">Product &amp; Advertising</span><span class="sub-desc">Product photography built on light, texture and styling.</span></a></li><li><a href="portfolio-events.html"><span class="sub-title">Events</span><span class="sub-desc">Launches, conferences and celebrations, from the first guest to the last.</span></a></li><li><a href="portfolio-corporate-commercial.html"><span class="sub-title">Corporate &amp; Commercial</span><span class="sub-desc">Leadership portraits, team headshots and brand campaigns.</span></a></li><li><a href="photography-videography.html"><span class="sub-title">Photography/Videography</span><span class="sub-desc">Stills and motion from one creative team.</span></a></li></ul></div>
@@ -58,8 +58,16 @@
 <input class="field" id="c-email" name="email" type="email" autocomplete="email" required>
 <label class="field-label" for="c-type">What are you planning?</label>
 <select class="field" id="c-type" name="type">
-<option>Commercial and brand production</option><option>Events and corporate coverage</option>
-<option>People and professional photography</option><option>Post-production and specialised production</option>
+<option value="">Choose a service</option>
+<option value="commercial-photography">Commercial Photography</option>
+<option value="product-photography">Product Photography</option>
+<option value="videography-brand-films">Videography &amp; Brand Films</option>
+<option value="event-coverage">Event Coverage</option>
+<option value="portrait-photography">Portrait Photography</option>
+<option value="maternity-photoshoot">Maternity Photoshoot</option>
+<option value="video-editing-post-production">Video Editing &amp; Post Production</option>
+<option value="drone-podcast-livestream">Drone, Podcast &amp; Livestream</option>
+<option value="other">Something else</option>
 </select>
 <label class="field-label" for="c-date">Preferred date (optional)</label>
 <input class="field" id="c-date" name="date" type="date">
@@ -85,6 +93,6 @@
 <p class="copy">&copy; 2026 Lion Creative Media. All rights reserved.</p>
 </div>
 </footer>
-<script src="nav.js?v=10"></script>
+<script src="nav.js?v=11"></script>
 </body>
 </html>

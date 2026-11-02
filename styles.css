@@ -625,6 +625,34 @@ select.field option { background: var(--band); color: var(--white); }
   .hero-kicker { font-size: 11px; letter-spacing: 0.2em; }
 }
 
+/* ---------- Service cards (eight across the home and services pages) and detail pages ---------- */
+.svc-grid--eight { grid-template-columns: repeat(4, 1fr); gap: 26px; }
+.svc-grid--eight .svc-body { padding: 22px 20px 24px; }
+.svc-grid--eight .svc-body h3 { font-size: clamp(22px, 1.9vw, 27px); }
+.svc-grid--eight .svc-body p { font-size: 14.5px; }
+.included { list-style: none; margin: 16px 0 22px; padding: 0; }
+.included li { padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+.included li:first-child { border-top: 1px solid var(--line); }
+.included li::before { content: '\2014'; color: var(--gold); margin-right: 12px; }
+.service-detail { align-items: start; }
+.more-services { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.more-services a {
+  padding: 11px 20px; border: 1px solid var(--line); color: var(--text); text-decoration: none; font-size: 14px;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.more-services a:hover, .more-services a:focus-visible { border-color: var(--gold); color: var(--gold-light); background: rgba(224, 165, 38, 0.08); }
+.about-intro { max-width: 980px; }
+.about-intro .eyebrow { margin-bottom: 16px; }
+.about-intro h1 { font-size: clamp(34px, 5vw, 64px); line-height: 1.1; }
+.lede--big { font-family: var(--serif); font-size: clamp(28px, 3.2vw, 40px); font-style: italic; line-height: 1.25; color: var(--white); }
+.band .grid-2 > div > p + p { margin-top: 16px; }
+@media (max-width: 1100px) {
+  .svc-grid--eight { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+}
+@media (max-width: 640px) {
+  .svc-grid--eight { grid-template-columns: 1fr; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .menu-fixed, .btn, .btn-fill, .call-btn, .site-nav a, .sub, .sub-toggle svg { transition: none !important; }

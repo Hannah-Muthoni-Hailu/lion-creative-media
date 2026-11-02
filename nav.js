@@ -145,6 +145,15 @@
     a.addEventListener('click', function (e) { e.preventDefault(); });
   });
 
+  /* ----- Contact form: ?service=slug (from a service page) pre-selects that service ----- */
+  var pick = document.getElementById('c-type');
+  if (pick && window.URLSearchParams) {
+    var want = new URLSearchParams(window.location.search).get('service');
+    if (want) {
+      Array.prototype.forEach.call(pick.options, function (o) { if (o.value === want) pick.value = want; });
+    }
+  }
+
   /* ----- Demo enquiry forms: confirm on screen, send nothing ----- */
   Array.prototype.forEach.call(document.querySelectorAll('form[data-demo-form]'), function (form) {
     form.addEventListener('submit', function (e) {
