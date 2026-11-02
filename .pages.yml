@@ -1,0 +1,100 @@
+# Pages CMS configuration (https://pagescms.org). Writers sign in with GitHub and use
+# the "Insights articles" screen. Everything saved here becomes a file in content/posts.
+media:
+  - name: images
+    label: Images
+    input: images/blog
+    output: /images/blog
+    rename: safe
+    extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: posts
+    label: Insights articles
+    type: collection
+    path: content/posts
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    view:
+      fields: [title, date, published, category]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Article title
+        type: string
+        required: true
+        description: "The headline readers see on the page."
+        options: { minlength: 10, maxlength: 90 }
+      - name: published
+        label: Published
+        type: boolean
+        default: false
+        description: "Off = draft, hidden from the website. Turn on when the article is ready to go live."
+      - name: date
+        label: Publish date
+        type: date
+        options: { format: yyyy-MM-dd }
+      - name: category
+        label: Category
+        type: select
+        required: true
+        options:
+          values: [Weddings, Portraits, Product, Events, Corporate, Video, Behind the scenes, News]
+      - name: author
+        label: Author
+        type: string
+        default: The Lion Creative Media team
+      - name: excerpt
+        label: Short summary (shown under the title and on the Insights list)
+        type: text
+        required: true
+        options: { minlength: 60, maxlength: 280 }
+      - name: cover
+        label: Cover image
+        type: image
+        required: true
+        options: { media: images }
+      - name: cover_alt
+        label: Cover image description (for screen readers and Google Images)
+        type: string
+        required: true
+        description: "Describe what is in the photo, e.g. 'Bride and groom laughing under a floral arch'."
+        options: { minlength: 10, maxlength: 140 }
+      - name: cover_focus
+        label: Which part of the cover photo to keep when it is cropped
+        type: select
+        default: upper
+        options:
+          values:
+            - { value: top, label: Top }
+            - { value: upper, label: Upper part (good for faces) }
+            - { value: center, label: Middle }
+            - { value: lower, label: Lower part }
+      # ---- SEO ----
+      - name: focus_keyword
+        label: "SEO: focus keyword (what someone would type into Google to find this)"
+        type: string
+        description: "e.g. 'wedding photographer Nairobi'. The site build warns if it is missing from the title, description or first paragraph."
+      - name: seo_title
+        label: "SEO: title shown on Google (max 60 characters)"
+        type: string
+        description: "Leave blank to use the article title. Put the focus keyword near the start."
+        options: { maxlength: 60 }
+      - name: meta_description
+        label: "SEO: description shown on Google (70 to 160 characters)"
+        type: text
+        required: true
+        description: "One or two sentences that make someone want to click. Include the focus keyword."
+        options: { minlength: 70, maxlength: 160 }
+      - name: body
+        label: Article
+        type: rich-text
+        options:
+          format: markdown
+          media: images
+          switcher: true
+        description: "Use Heading 2 / Heading 3 for sub-headings. Add a description (alt text) to every image. Aim for 300+ words."

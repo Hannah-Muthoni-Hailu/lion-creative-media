@@ -1,0 +1,43 @@
+name: Build site
+
+# Runs whenever an article, the generator or the CMS settings change on main
+# (for example when a writer saves an article in Pages CMS), rebuilds every page,
+# the sitemap and robots.txt, and commits the result so the site updates.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'tools/**'
+      - 'images/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: tools/requirements.txt
+      - run: pip install -r tools/requirements.txt
+      - name: Build pages (SEO checks show as warnings)
+        run: python tools/build_site.py
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Nothing to commit"; else
+            git commit -m "Rebuild site from content"
+            git push
+          fi

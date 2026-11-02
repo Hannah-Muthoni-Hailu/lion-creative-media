@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hannah-muthoni-hailu.github.io/lion-creative-media/sitemap.xml
