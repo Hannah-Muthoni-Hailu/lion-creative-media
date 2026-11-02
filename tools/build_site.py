@@ -618,11 +618,14 @@ def seo_check(p):
         warn(f"[{n}] is only {p['words']} words; short posts rarely rank. Aim for 300 or more.")
     if not re.search(r'<h[23]', p['body_html']):
         warn(f"[{n}] has no sub-headings (use Heading 2 / Heading 3) to break up the text.")
-    k = p['keyword'].lower()
-    if k:
-        first = ' '.join(re.sub(r'<[^>]+>', ' ', p['body_html']).split()[:100]).lower()
-        for label, text in (('title', t.lower()), ('meta description', p['desc'].lower()), ('first 100 words', first)):
-            if k not in text:
+    def norm(x):  # ignore case, punctuation and small joining words so "wedding photographer in Nairobi" matches
+        words = re.findall(r'[a-z0-9]+', x.lower())
+        return ' ' + ' '.join(w for w in words if w not in ('in', 'a', 'an', 'the', 'of', 'for', 'to', 'and', 'on', 'at')) + ' '
+    k = norm(p['keyword'])
+    if k.strip():
+        first = ' '.join(re.sub(r'<[^>]+>', ' ', p['body_html']).split()[:100])
+        for label, text in (('title', t), ('meta description', p['desc']), ('first 100 words', first)):
+            if k not in norm(text):
                 warn(f"[{n}] focus keyword \"{p['keyword']}\" is missing from the {label}.")
 
 
