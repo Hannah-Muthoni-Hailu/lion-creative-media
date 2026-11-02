@@ -86,7 +86,7 @@ def head(title, desc, fname='index.html', share_image=None, kind='website', extr
 {seo_tags(fname, title, desc, share_image, kind, extra)}<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=Ubuntu:wght@300;400;700&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=11">
+<link rel="stylesheet" href="styles.css?v=13">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -250,11 +250,31 @@ def enquiry_band(form_id='home', alt=False):
 '''
 
 
+# WhatsApp chat button, fixed bottom right on every page. Uses WhatsApp's own click-to-chat link
+# (no third-party widget). Number is international format, digits only.
+WHATSAPP = '254742552019'
+WHATSAPP_DEFAULT = "Hi Lion Creative Media, I'd like to enquire about your photography and video services."
+WHATSAPP_ICON = ('<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3z" fill="#fff"/>'
+                 '<g transform="translate(8.8 8.6) scale(.6)" fill="#25D366">' + PHONE_ICON.split('>', 1)[1].rsplit('</svg>', 1)[0] + '</g></svg>')
+
+
+def whatsapp_button(fname):
+    from urllib.parse import quote
+    text = WHATSAPP_DEFAULT
+    if fname.startswith('service-'):
+        for v in SERVICE_LIST:
+            if fname == f"service-{v['slug']}.html":
+                text = f"Hi Lion Creative Media, I'd like to enquire about {v['title']}."
+    return (f'<a class="wa-float" href="https://wa.me/{WHATSAPP}?text={quote(text)}" target="_blank" rel="noopener" '
+            f'aria-label="Chat with us on WhatsApp">{WHATSAPP_ICON}<span class="wa-label">Chat with us</span></a>\n')
+
+
 PAGES = []   # every page written, for the sitemap: (file name, last-modified date or None)
 
 
 def page(fname, title, desc, active, body, share_image=None, kind='website', extra='', lastmod=None, sitemap=True):
     html = head(title, desc, fname, share_image, kind, extra) + header(active) + body + footer()
+    html = html.replace('</body>', whatsapp_button(fname) + '</body>', 1)
     (OUT / fname).write_text(html, encoding='utf-8')
     if sitemap:
         PAGES.append((fname, lastmod))

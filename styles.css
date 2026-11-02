@@ -682,3 +682,15 @@ select.field option { background: var(--band); color: var(--white); }
 .post-body img { display: block; max-width: 100%; height: auto; margin: 28px 0; }
 .post-body blockquote { margin: 28px 0; padding-left: 20px; border-left: 2px solid var(--gold); font-family: "Cormorant Garamond", Georgia, serif; font-size: 26px; font-style: italic; }
 @media (max-width: 640px) { .post-body h2 { font-size: 28px; } .post-body h3 { font-size: 23px; } }
+
+/* ---- WhatsApp chat button ---- */
+.wa-float { position: fixed; right: 20px; bottom: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 90; display: flex; align-items: center; gap: 0; height: 56px; min-width: 56px; padding: 0; border-radius: 28px; background: #25D366; color: #fff; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,.35); transition: transform .2s ease, box-shadow .2s ease; }
+.wa-float svg { width: 56px; height: 56px; flex: none; padding: 11px; }
+.wa-label { max-width: 0; overflow: hidden; white-space: nowrap; font-size: 14px; font-weight: 700; letter-spacing: .02em; transition: max-width .25s ease, padding .25s ease; }
+.wa-float:hover, .wa-float:focus-visible { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.45); }
+.wa-float:hover .wa-label, .wa-float:focus-visible .wa-label { max-width: 140px; padding-right: 20px; }
+.wa-float:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+body.menu-open .wa-float { display: none; }
+@media (max-width: 640px) { .wa-float { right: 14px; bottom: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); height: 52px; min-width: 52px; } .wa-float svg { width: 52px; height: 52px; padding: 10px; } .wa-label { display: none; } }
+@media (prefers-reduced-motion: reduce) { .wa-float, .wa-label { transition: none; } }
+.wa-float, .wa-float:hover, .wa-float .wa-label { color: #0d0d0d; }
