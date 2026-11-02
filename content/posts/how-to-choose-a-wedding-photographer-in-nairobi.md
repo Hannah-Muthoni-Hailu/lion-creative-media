@@ -1,21 +1,20 @@
 ---
 title: How to choose a wedding photographer in Nairobi
-date: '2026-11-02'
 published: true
+date: 2026-11-02
 category: Weddings
 author: The Lion Creative Media team
-excerpt: Your wedding photos will outlast almost everything else you pay for. Here are the questions worth asking before you book.
-seo_title: How to Choose a Wedding Photographer in Nairobi
-meta_description: Looking for a wedding photographer in Nairobi? Five practical questions to ask before you book, from style and packages to delivery time.
-focus_keyword: wedding photographer Nairobi
+excerpt: Your wedding photos will outlast almost everything else you pay for.
+  Here are the questions worth asking before you book.
 cover: images/wedding.jpg
 cover_alt: A couple holding hands at a wedding ceremony in front of a white floral arch
 cover_focus: upper
+focus_keyword: wedding photographer Nairobi
+seo_title: How to Choose a Wedding Photographer in Nairobi
+meta_description: Looking for a wedding photographer in Nairobi? Five practical
+  questions to ask before you book, from style and packages to delivery time.
 ---
-
 Choosing a wedding photographer in Nairobi is one of the biggest decisions in your planning. The cake is eaten and the flowers fade, but the photographs stay with you for life. A little care at the booking stage saves a lot of worry later.
-
-This is a test article, written to check how posts look on the site, but the advice below is real and worth following.
 
 ## Start with the style, not the price
 
